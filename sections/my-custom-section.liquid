@@ -1,0 +1,269 @@
+{% style %}
+    #{{ section.id }} h2 {
+        color: {{ section.settings.title_text_color }};
+        text-align: {{ section.settings.title_alignment }};
+        margin: 0;
+        font-size: {{ section.settings.title_font_size }}rem;
+    }
+
+    #{{ section.id }} p {
+        color: {{ section.settings.subtitle_text_color }};
+        text-align: {{ section.settings.subtitle_alignment }};
+        font-size: {{ section.settings.subtitle_font_size }}rem;
+    }
+
+    #{{ section.id }} {
+        background-color: {{ section.settings.background_color }};
+        padding-top: {{ section.settings.padding_top_mobile }}rem;
+        padding-bottom: {{ section.settings.padding_bottom_mobile }}rem;
+        padding-left: {{ section.settings.padding_left_mobile }}rem;
+        padding-right: {{ section.settings.padding_right_mobile }}rem;
+    }
+    
+
+    #{{ section.id }} .custom-section-template-blocks {
+        display: grid;
+        grid-template-columns: repeat({{ section.settings.mobile_columns }}, 1fr);
+        gap: 0.5rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    @media only screen and (min-width: 769px) {
+        #{{ section.id }} .custom-section-template-blocks {
+            grid-template-columns: repeat({{ section.settings.desktop_columns }}, 1fr);
+            gap: 1rem;
+        }
+
+        #{{ section.id }} {
+        padding-top: {{ section.settings.padding_top }}rem;
+        padding-bottom: {{ section.settings.padding_bottom }}rem;
+        padding-left: {{ section.settings.padding_left }}rem;
+        padding-right: {{ section.settings.padding_right }}rem;
+      }
+    }
+{% endstyle %}
+
+<div id="{{ section.id }}" class="custom-section-template {{ section.settings.custom_css_class }}">
+  <h2>{{ section.settings.title }}</h2>
+  <p>{{ section.settings.subtitle }}</p>
+  <div class="custom-section-template-blocks">
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Section Template",
+  "blocks": [{ "type": "@theme" }],
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Custom Section Heading"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Custom Section Subheading"
+    },
+    {
+      "type": "header",
+      "content": "Font Sizes"
+    },
+    {
+      "type": "text",
+      "id": "title_font_size",
+      "label": "Title Font Size",
+      "default": "1rem"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_font_size",
+      "label": "Subtitle Font Size",
+      "default": "1rem"
+    },
+    {
+      "type": "header",
+      "content": "Colours"
+    },
+    {
+      "type": "color",
+      "id": "title_text_color",
+      "label": "Title Colour"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_text_color",
+      "label": "Subtitle Colour"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Colour"
+    },
+    {
+      "type": "text",
+      "label": "Custom CSS Class",
+      "id": "custom_css_class",
+    },
+    { 
+      "type": "radio",
+      "id": "title_alignment",
+      "label": "Title Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "radio",
+      "id": "subtitle_alignment",
+      "label": "Subtitle Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        } 
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Padding Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "rem",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "rem",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "label": "Padding Left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "rem",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "label": "Padding Right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "rem",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Padding Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "rem",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "rem",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "label": "Padding Left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "rem",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "label": "Padding Right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "rem",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Columns"
+    },
+    {
+      "type": "range",
+      "id": "desktop_columns",
+      "label": "Desktop Columns",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "mobile_columns",
+      "label": "Mobile Columns",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Section Template",
+    }
+  ]
+}
+{% endschema %}

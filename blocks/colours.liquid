@@ -1,0 +1,94 @@
+{%- assign colour_count = metaobjects.colour.values.size -%}
+
+{%- capture slides -%}
+  {%- for colours in metaobjects.colour.values -%}
+    {%- capture children -%}
+      <div class="colour-item">
+        <img src="{{ colours.image | image_url: width: 200 }}" alt="{{ colours.title }}" width="200" height="100">
+        <p>{{ colours.title }}</p>
+      </div>
+    {%- endcapture -%}
+    {%- render 'slideshow-slide', index: forloop.index0, children: children, class: 'colour-slide' -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- if colour_count > 0 -%}
+  {%- capture slideshow_arrows -%}
+    {%- render 'slideshow-arrows', icon_style: 'chevron', icon_shape: 'none' -%}
+  {%- endcapture -%}
+
+  <div class="colours-slider colours-slider--{{ block.id }}">
+    {% render 'slideshow',
+      ref: 'coloursSlider',
+      class: 'colours-slider',
+      slides: slides,
+      slideshow_arrows: slideshow_arrows,
+      slide_count: colour_count,
+      infinite: false,
+      slideshow_gutters: 'start end',
+      show_arrows: true,
+      icon_style: 'chevron'
+    %}
+  </div>
+{%- endif -%}
+
+{% style %}
+  .colours-slider--{{ block.id }} {
+    --gutter-slide-width: 1rem;
+    --slide-width: min(200px, calc((100% - 2rem) / 3));
+  }
+
+  .colours-slider--{{ block.id }} .colour-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .colours-slider--{{ block.id }} .colour-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .colours-slider--{{ block.id }} .colour-item p {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    padding: 1rem 0.5rem;
+    margin: 0;
+    text-align: center;
+  }
+
+  .colours-slider--{{ block.id }} slideshow-slides {
+    --slideshow-gap: 1rem;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .colours-slider--{{ block.id }} {
+      --slide-width: min(180px, calc((100% - 2rem) / 2));
+    }
+  }
+
+  @media only screen and (min-width: 769px) {
+    .colours-slider--{{ block.id }} {
+      --slide-width: min(200px, calc((100% - 2rem) / 4));
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+  {
+    "name": "Colours",
+    "settings": [
+    ],
+    "presets": [
+    {
+      "name": "Colours"
+    }
+  ]
+  }
+{% endschema %}

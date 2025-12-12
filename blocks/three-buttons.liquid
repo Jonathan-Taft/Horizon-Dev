@@ -1,0 +1,225 @@
+<div class="three-buttons three-buttons--{{ block.id }}" {{ block.shopify_attributes }}>
+  {%- comment -%} Button 1 {%- endcomment -%}
+  {%- if block.settings.button_1_label != blank -%}
+    <div class="three-buttons__button">
+      <a
+        {% if block.settings.button_1_link == blank %}
+          role="link"
+          aria-disabled="true"
+        {% else %}
+          href="{{ block.settings.button_1_link }}"
+        {% endif %}
+        class="{{ block.settings.button_1_style }} {{ block.settings.button_1_style }}--{{ block.id }}-1"
+        {%- if block.settings.button_1_open_in_new_tab -%}
+          target="_blank"
+          rel="noopener noreferrer"
+        {%- endif -%}
+      >
+        {{ block.settings.button_1_label }}
+      </a>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} Button 2 {%- endcomment -%}
+  {%- if block.settings.button_2_label != blank -%}
+    <div class="three-buttons__button">
+      <a
+        {% if block.settings.button_2_link == blank %}
+          role="link"
+          aria-disabled="true"
+        {% else %}
+          href="{{ block.settings.button_2_link }}"
+        {% endif %}
+        class="{{ block.settings.button_2_style }} {{ block.settings.button_2_style }}--{{ block.id }}-2"
+        {%- if block.settings.button_2_open_in_new_tab -%}
+          target="_blank"
+          rel="noopener noreferrer"
+        {%- endif -%}
+      >
+        {{ block.settings.button_2_label }}
+      </a>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} Button 3 {%- endcomment -%}
+  {%- if block.settings.button_3_label != blank -%}
+    <div class="three-buttons__button">
+      <a
+        {% if block.settings.button_3_link == blank %}
+          role="link"
+          aria-disabled="true"
+        {% else %}
+          href="{{ block.settings.button_3_link }}"
+        {% endif %}
+        class="{{ block.settings.button_3_style }} {{ block.settings.button_3_style }}--{{ block.id }}-3"
+        {%- if block.settings.button_3_open_in_new_tab -%}
+          target="_blank"
+          rel="noopener noreferrer"
+        {%- endif -%}
+      >
+        {{ block.settings.button_3_label }}
+      </a>
+    </div>
+  {%- endif -%}
+</div>
+
+{% style %}
+  .three-buttons--{{ block.id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .three-buttons--{{ block.id }} {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+  }
+
+  .three-buttons--{{ block.id }} .three-buttons__button {
+    display: flex;
+    justify-content: center;
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Three Buttons",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Button 1"
+    },
+    {
+      "type": "text",
+      "id": "button_1_label",
+      "label": "Label",
+      "default": "Button 1"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_1_open_in_new_tab",
+      "label": "Open in new tab",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "button_1_style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "button",
+          "label": "Primary"
+        },
+        {
+          "value": "button-secondary",
+          "label": "Secondary"
+        },
+        {
+          "value": "link",
+          "label": "Link"
+        }
+      ],
+      "default": "button"
+    },
+    {
+      "type": "header",
+      "content": "Button 2"
+    },
+    {
+      "type": "text",
+      "id": "button_2_label",
+      "label": "Label",
+      "default": "Button 2"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_2_open_in_new_tab",
+      "label": "Open in new tab",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "button_2_style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "button",
+          "label": "Primary"
+        },
+        {
+          "value": "button-secondary",
+          "label": "Secondary"
+        },
+        {
+          "value": "link",
+          "label": "Link"
+        }
+      ],
+      "default": "button"
+    },
+    {
+      "type": "header",
+      "content": "Button 3"
+    },
+    {
+      "type": "text",
+      "id": "button_3_label",
+      "label": "Label",
+      "default": "Button 3"
+    },
+    {
+      "type": "url",
+      "id": "button_3_link",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_3_open_in_new_tab",
+      "label": "Open in new tab",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "button_3_style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "button",
+          "label": "Primary"
+        },
+        {
+          "value": "button-secondary",
+          "label": "Secondary"
+        },
+        {
+          "value": "link",
+          "label": "Link"
+        }
+      ],
+      "default": "button"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Three Buttons",
+      "category": "t:categories.basic"
+    }
+  ]
+}
+{% endschema %}
+
