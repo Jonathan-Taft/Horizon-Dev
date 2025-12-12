@@ -82,6 +82,24 @@
         "padding-inline-end": 0
       }
     },
+    "breadcrumbs_Ryxxzy": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumb",
+      "settings": {
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "type_preset": "h5",
+        "font": "var(--font-body--family)",
+        "font_size": "1rem",
+        "line_height": "normal",
+        "letter_spacing": "normal",
+        "case": "none",
+        "wrap": "pretty",
+        "color": "var(--color-foreground)",
+        "padding-block-start": 10,
+        "padding-block-end": 10
+      }
+    },
     "main": {
       "type": "main-collection",
       "blocks": {
@@ -215,6 +233,7 @@
   },
   "order": [
     "fast_filters_FdLBfP",
+    "breadcrumbs_Ryxxzy",
     "main"
   ]
 }
