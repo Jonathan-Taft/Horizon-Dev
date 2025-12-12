@@ -23,8 +23,8 @@
         "case": "none",
         "wrap": "pretty",
         "color": "var(--color-foreground)",
-        "padding-block-start": 15,
-        "padding-block-end": 5
+        "padding-block-start": 10,
+        "padding-block-end": 10
       }
     },
     "fast_filters_FdLBfP": {
@@ -98,20 +98,6 @@
         "padding-block-end": 40,
         "padding-inline-start": 0,
         "padding-inline-end": 0
-      }
-    },
-    "divider_69d3eD": {
-      "type": "divider",
-      "name": "t:names.divider_section",
-      "settings": {
-        "color_scheme": "",
-        "section_width": "full-width",
-        "thickness": 1,
-        "corner_radius": "square",
-        "width_percent": 95,
-        "alignment_horizontal": "center",
-        "padding-block-start": 16,
-        "padding-block-end": 16
       }
     },
     "main": {
@@ -247,7 +233,6 @@
   },
   "order": [
     "breadcrumbs_Ryxxzy",
-    "divider_69d3eD",
     "fast_filters_FdLBfP",
     "main"
   ]
