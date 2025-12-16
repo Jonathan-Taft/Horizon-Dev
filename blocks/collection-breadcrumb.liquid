@@ -1,0 +1,204 @@
+
+{% liquid
+  assign block_settings = block.settings
+  assign collection = closest.collection
+%}
+
+{% capture breadcrumb_html %}
+  <ul class="list-unstyle list-breadcrumb">
+    <li><a href="{{ routes.root_url }}">Home</a></li>
+    {% if collection != blank %}
+      <li>{{ collection.title }}</li>
+    {% else %}
+      <li>Collection</li>
+    {% endif %}
+  </ul>
+{% endcapture %}
+
+{% render 'text', fallback_text: breadcrumb_html, block: block %}
+
+{% stylesheet %}
+  .list-breadcrumb {
+    padding-inline-start: 0 !important;
+  }
+
+  .list-breadcrumb li {
+    display: inline-block;
+    margin-right: var(--margin-2xs);
+  }
+
+  .list-breadcrumb li:last-child {
+    margin-right: 0;
+  }
+
+  .list-breadcrumb li:before {
+    content: "›";
+    display: inline-block;
+    color: inherit;
+    font-size: 0.9em;
+    margin-right: var(--margin-2xs);
+  }
+
+  .list-breadcrumb li:first-child:before {
+    content: none;
+  }
+
+  .list-breadcrumb li a {
+    text-decoration: none;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection Breadcrumb",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "options": [
+        {
+          "value": "fit-content",
+          "label": "Fit Content"
+        },
+        {
+          "value": "100%",
+          "label": "Full Width"
+        }
+      ],
+      "default": "fit-content"
+    },
+    {
+      "type": "select",
+      "id": "max_width",
+      "label": "Max Width",
+      "options": [
+        {
+          "value": "narrow",
+          "label": "Narrow"
+        },
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "text_alignment",
+      "id": "alignment",
+      "label": "Alignment",
+      "default": "left",
+      "visible_if": "{{ block.settings.width == '100%' }}"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "Preset",
+      "options": [
+        {
+          "value": "rte",
+          "label": "Default"
+        },
+        {
+          "value": "paragraph",
+          "label": "Paragraph"
+        },
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "rte"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "Left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "Right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Breadcrumb",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}
+
