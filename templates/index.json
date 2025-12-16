@@ -23,7 +23,7 @@
             "vertical_alignment": "center",
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "flex-end",
+            "vertical_alignment_flex_direction_column": "center",
             "gap": 12,
             "inherit_color_scheme": true,
             "color_scheme": "",
@@ -79,7 +79,7 @@
                 "text_MVVDFj": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Apres Essentials</h2>",
+                    "text": "<h2>Avenger Trekking</h2>",
                     "width": "100%",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -104,7 +104,7 @@
                 "text_Pcmpnz": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Quality meets creativity</p>",
+                    "text": "<p>Military Grade Lining With Minimal Stiching</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
