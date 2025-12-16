@@ -1,0 +1,138 @@
+
+{%- liquid
+  assign block_settings = block.settings
+  assign variant = closest.product.selected_or_first_available_variant
+  assign sku = variant.sku
+-%}
+
+{% if sku != blank or block_settings.show_when_empty %}
+  <product-sku
+    class="product-sku spacing-style"
+    style="{% render 'spacing-style', settings: block_settings %}"
+    {{ block.shopify_attributes }}
+    data-product-id="{{ closest.product.id }}"
+    data-variant-id="{{ variant.id }}"
+  >
+    {% if block_settings.label != blank %}
+      <span class="product-sku__label">
+        {{ block_settings.label | escape }}
+      </span>
+    {% endif %}
+    <span
+      class="product-sku__value"
+      id="SKU-{{ section.id }}"
+    >
+      {% if sku != blank %}
+        {{ sku }}
+      {% else %}
+        {{ block_settings.empty_text | default: 'N/A' }}
+      {% endif %}
+    </span>
+  </product-sku>
+{% endif %}
+
+{% stylesheet %}
+  product-sku {
+    display: flex;
+    align-items: center;
+    gap: var(--padding-xs);
+    font-size: var(--font-paragraph--size);
+    line-height: var(--font-paragraph--line-height);
+  }
+
+  product-sku .product-sku__label {
+    font-weight: var(--font-weight-medium);
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
+  }
+
+  product-sku .product-sku__value {
+    color: var(--color-foreground);
+  }
+{% endstylesheet %}
+
+<script
+  src="{{ 'product-sku.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+{% schema %}
+{
+  "name": "Product SKU",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "SKU:",
+      "info": "Optional label to display before the SKU"
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "Empty text",
+      "default": "N/A",
+      "info": "Text to display when SKU is not available"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_when_empty",
+      "label": "Show when SKU is empty",
+      "default": false,
+      "info": "Display the block even when the product has no SKU"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "Left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "Right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product SKU",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}
+
