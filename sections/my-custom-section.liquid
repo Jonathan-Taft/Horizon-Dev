@@ -1,15 +1,28 @@
 {% style %}
+    {% liquid
+      # Handle title font size - strip any existing 'rem' and spaces, then add rem
+      assign title_font_size = section.settings.title_font_size | strip | remove: 'rem' | remove: ' ' | default: '1'
+      if title_font_size == blank
+        assign title_font_size = '1'
+      endif
+      
+      # Handle subtitle font size - strip any existing 'rem' and spaces, then add rem
+      assign subtitle_font_size = section.settings.subtitle_font_size | strip | remove: 'rem' | remove: ' ' | default: '1'
+      if subtitle_font_size == blank
+        assign subtitle_font_size = '1'
+      endif
+    %}
     #{{ section.id }} h2 {
         color: {{ section.settings.title_text_color }};
         text-align: {{ section.settings.title_alignment }};
         margin-bottom: 1rem;
-        font-size: {{ section.settings.title_font_size }}rem;
+        font-size: {{ title_font_size }}rem;
     }
 
     #{{ section.id }} p {
         color: {{ section.settings.subtitle_text_color }};
         text-align: {{ section.settings.subtitle_alignment }};
-        font-size: {{ section.settings.subtitle_font_size }}rem;
+        font-size: {{ subtitle_font_size }}rem;
     }
 
     #{{ section.id }} {
@@ -77,13 +90,15 @@
       "type": "text",
       "id": "title_font_size",
       "label": "Title Font Size",
-      "default": "1 rem"
+      "default": "1",
+      "info": "Enter a number (e.g., 1, 1.5, 2). The value will be converted to rem units."
     },
     {
       "type": "text",
       "id": "subtitle_font_size",
       "label": "Subtitle Font Size",
-      "default": "1 rem"
+      "default": "1",
+      "info": "Enter a number (e.g., 1, 1.5, 2). The value will be converted to rem units."
     },
     {
       "type": "header",
