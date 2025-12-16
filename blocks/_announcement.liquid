@@ -1,8 +1,15 @@
 
 
-{%- assign block_settings = block.settings -%}
-{%- assign plain_text = block_settings.text | strip_newlines | strip_html | strip -%}
-{%- assign block_index = section.blocks | find_index: 'id', block.id -%}
+{%- liquid
+  assign block_settings = block.settings
+  assign plain_text = block_settings.text | strip_newlines | strip_html | strip
+  assign block_index = section.blocks | find_index: 'id', block.id
+  assign display_mode = section.settings.display_mode | default: 'carousel'
+  assign is_columns_mode = false
+  if display_mode == 'columns'
+    assign is_columns_mode = true
+  endif
+-%}
 
 {%- unless plain_text == '' -%}
   <slideshow-slide
@@ -24,7 +31,7 @@
       --line-height: 1;
     "
     {{ block.shopify_attributes }}
-    aria-hidden="{% if block_index == 0 %}false{% else %}true{% endif %}"
+    aria-hidden="{% if is_columns_mode %}false{% elsif block_index == 0 %}false{% else %}true{% endif %}"
   >
     <p class="announcement-bar__text">
       {{ block.settings.text }}

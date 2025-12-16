@@ -1,6 +1,13 @@
 
 
-{% if section.blocks.size > 1 %}
+{% liquid
+  assign display_mode = section.settings.display_mode | default: 'carousel'
+  assign needs_script = false
+  if display_mode == 'carousel' and section.blocks.size > 1
+    assign needs_script = true
+  endif
+%}
+{% if needs_script %}
   <script
     src="{{ 'announcement-bar.js' | asset_url }}"
     type="module"
@@ -14,25 +21,41 @@
   style="{% render 'spacing-padding', settings: section.settings %}; --border-bottom-width: {{ section.settings.divider_width }}px;"
 >
   {% liquid
+    assign display_mode = section.settings.display_mode | default: 'carousel'
     assign autoplay = false
     assign show_arrows = false
-    if section.blocks.size > 1
+    assign is_columns_mode = false
+    
+    if display_mode == 'columns'
+      assign is_columns_mode = true
+    elsif section.blocks.size > 1
       assign autoplay = true
       assign show_arrows = true
+    endif
+    
+    # Determine number of columns to show (max 3)
+    assign block_count = section.blocks.size
+    if block_count > 3
+      assign column_count = 3
+    else
+      assign column_count = block_count
     endif
   %}
 
   <announcement-bar-component
-    class="announcement-bar__slider"
-    {% if autoplay == true %}
+    class="announcement-bar__slider{% if is_columns_mode %} announcement-bar__slider--columns{% endif %}"
+    data-display-mode="{{ display_mode }}"
+    data-column-count="{{ column_count }}"
+    style="{% if is_columns_mode %}--column-count: {{ column_count }};{% endif %}"
+    {% if autoplay == true and is_columns_mode == false %}
       autoplay="{{ section.settings.speed }}" aria-live="polite"
     {% endif %}
   >
-    {% if show_arrows %}
+    {% if show_arrows and is_columns_mode == false %}
       {% render 'slideshow-arrows', icon_style: 'chevron' %}
     {% endif %}
 
-    <div class="announcement-bar__slides">
+    <div class="announcement-bar__slides{% if is_columns_mode %} announcement-bar__slides--columns{% endif %}">
       {% content_for 'blocks' %}
     </div>
   </announcement-bar-component>
@@ -72,6 +95,43 @@
     &[aria-hidden='true'] {
       opacity: 0;
       visibility: hidden;
+    }
+  }
+
+  /* Columns mode styles */
+  .announcement-bar__slider--columns {
+    width: 100%;
+  }
+
+  .announcement-bar__slider--columns .announcement-bar__slides {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(var(--column-count, 1), 1fr);
+    gap: var(--padding-md);
+    grid-area: unset;
+  }
+
+  .announcement-bar__slider--columns .announcement-bar__slides > * {
+    grid-area: unset;
+  }
+
+  .announcement-bar__slider--columns .announcement-bar__slide {
+    opacity: 1;
+    visibility: visible;
+    width: 100%;
+    transition: none;
+  }
+
+  .announcement-bar__slider--columns .announcement-bar__slide[aria-hidden='true'] {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Responsive: stack columns on mobile */
+  @media screen and (max-width: 749px) {
+    .announcement-bar__slider--columns .announcement-bar__slides {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -135,13 +195,31 @@
   },
   "settings": [
     {
+      "type": "select",
+      "id": "display_mode",
+      "label": "Display mode",
+      "options": [
+        {
+          "value": "carousel",
+          "label": "Carousel"
+        },
+        {
+          "value": "columns",
+          "label": "Columns"
+        }
+      ],
+      "default": "carousel",
+      "info": "Carousel: slides through announcements one at a time. Columns: shows up to 3 announcements side by side."
+    },
+    {
       "type": "range",
       "id": "speed",
       "label": "t:settings.scroll_speed",
       "min": 2,
       "max": 10,
       "default": 5,
-      "unit": "sec"
+      "unit": "sec",
+      "visible_if": "{{ section.settings.display_mode == 'carousel' }}"
     },
     {
       "type": "header",

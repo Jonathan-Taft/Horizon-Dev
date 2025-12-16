@@ -24,6 +24,11 @@ export class AnnouncementBar extends Component {
   connectedCallback() {
     super.connectedCallback();
 
+    // Skip carousel functionality if in columns mode
+    if (this.dataset.displayMode === 'columns') {
+      return;
+    }
+
     this.addEventListener('mouseenter', this.suspend);
     this.addEventListener('mouseleave', this.resume);
     document.addEventListener('visibilitychange', this.#handleVisibilityChange);
