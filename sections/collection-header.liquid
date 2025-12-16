@@ -1,0 +1,219 @@
+{% liquid
+  assign section_id = section.settings.custom_id | default: section.id
+%}
+
+<div class="section-wrapper">
+  <div class="section-background color-{{ section.settings.color_scheme }}"></div>
+  <div
+    class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }} collection-header-section"
+    id="{{ section_id }}"
+    style="
+      --section-padding-top: {{ section.settings.padding_top }}px;
+      --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    "
+  >
+    {% if section.settings.background_image != blank %}
+      <div class="collection-header-section__background">
+        {% render 'background-image',
+          background_image: section.settings.background_image,
+          background_image_position: section.settings.background_image_position,
+          section: section
+        %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.overlay_enabled %}
+      <div
+        class="collection-header-section__overlay"
+        style="background-color: {{ section.settings.overlay_color }}; opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"
+      ></div>
+    {% endif %}
+
+    <div class="collection-header-section__content">
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .collection-header-section {
+    position: relative;
+    min-height: var(--section-min-height, 300px);
+  }
+
+  .collection-header-section__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    grid-column: 1 / -1;
+  }
+
+  .collection-header-section__background .background-image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .collection-header-section__background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .collection-header-section__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    grid-column: 1 / -1;
+  }
+
+  .collection-header-section__content {
+    position: relative;
+    z-index: 2;
+    padding-top: var(--section-padding-top, 0);
+    padding-bottom: var(--section-padding-bottom, 0);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection Header",
+  "class": "collection-header-wrapper",
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Section Width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "Page Width"
+        },
+        {
+          "value": "full-width",
+          "label": "Full Width"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "select",
+      "id": "background_image_position",
+      "label": "Background Image Position",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "fit",
+          "label": "Fit"
+        }
+      ],
+      "default": "cover",
+      "visible_if": "{{ section.settings.background_image != blank }}"
+    },
+    {
+      "type": "header",
+      "content": "Overlay"
+    },
+    {
+      "type": "checkbox",
+      "id": "overlay_enabled",
+      "label": "Enable Overlay",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#000000",
+      "visible_if": "{{ section.settings.overlay_enabled }}"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 50,
+      "visible_if": "{{ section.settings.overlay_enabled }}"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Advanced"
+    },
+    {
+      "type": "text",
+      "id": "custom_id",
+      "label": "Custom Section ID"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Header",
+    }
+  ]
+}
+{% endschema %}
+

@@ -1,0 +1,290 @@
+{%- doc -%}
+  Renders the collection description block with read more/less functionality.
+{%- enddoc -%}
+
+{% liquid
+  assign block_settings = block.settings
+  
+  if closest.collection == blank
+    assign collection_description = 'Collection description placeholder text'
+  elsif closest.collection != blank
+    assign collection_description = closest.collection.description
+  endif
+
+  assign plain_text = collection_description | strip_newlines | strip_html | strip
+  assign has_content = false
+  if plain_text != ''
+    assign has_content = true
+  endif
+
+  # Calculate if we need truncation
+  assign word_count = collection_description | split: ' ' | size
+  assign truncate_at = block_settings.truncate_at | default: 50
+  assign needs_truncation = false
+  if word_count > truncate_at
+    assign needs_truncation = true
+  endif
+%}
+
+{%- if has_content or request.design_mode -%}
+  {% if needs_truncation and block_settings.enable_read_more %}
+    <show-more-component
+      class="collection-description-block"
+      data-expanded="false"
+      data-skip-node-update="true"
+    >
+      <div
+        class="collection-description-block__content text-block {{ block_settings.type_preset }}"
+        ref="showMoreContent"
+        style="
+          {% render 'typography-style', preset: block_settings.type_preset, settings: block_settings, type: 'body' %}
+          {% if block_settings.color != '' %}
+            color: {{ block_settings.color }};
+          {% endif %}
+          text-align: {{ block_settings.alignment }};
+        "
+        {{ block.shopify_attributes }}
+      >
+        <div class="collection-description-block__truncated">
+          {{ collection_description | strip_html | truncatewords: truncate_at }}
+        </div>
+        <div class="collection-description-block__full hidden" ref="showMoreItems">
+          {% if block_settings.type_preset == 'rte' or block_settings.type_preset == 'paragraph' %}
+            <rte-formatter>{{ collection_description }}</rte-formatter>
+          {% else %}
+            {{ collection_description }}
+          {% endif %}
+        </div>
+      </div>
+      <button
+        class="collection-description-block__toggle"
+        ref="showMoreButton"
+        aria-expanded="false"
+        onclick="this.closest('show-more-component').toggle(event)"
+      >
+        <span class="collection-description-block__label collection-description-block__label--more">
+          {{ block_settings.read_more_text | default: 'Read more' }}
+        </span>
+        <span class="collection-description-block__label collection-description-block__label--less">
+          {{ block_settings.read_less_text | default: 'Read less' }}
+        </span>
+      </button>
+    </show-more-component>
+  {% else %}
+    <div
+      class="collection-description-block text-block {{ block_settings.type_preset }}"
+      style="
+        {% render 'typography-style', preset: block_settings.type_preset, settings: block_settings, type: 'body' %}
+        {% if block_settings.color != '' %}
+          color: {{ block_settings.color }};
+        {% endif %}
+        text-align: {{ block_settings.alignment }};
+      "
+      {{ block.shopify_attributes }}
+    >
+      {% if block_settings.type_preset == 'rte' or block_settings.type_preset == 'paragraph' %}
+        <rte-formatter>{{ collection_description }}</rte-formatter>
+      {% else %}
+        {{ collection_description }}
+      {% endif %}
+    </div>
+  {% endif %}
+{%- endif -%}
+
+{% stylesheet %}
+  .collection-description-block {
+    margin-bottom: 1rem;
+  }
+
+  .collection-description-block__content {
+    margin-bottom: 0.5rem;
+  }
+
+  .collection-description-block__truncated {
+    display: block;
+  }
+
+  .collection-description-block__full.hidden {
+    display: none;
+  }
+
+  show-more-component[data-expanded="true"] .collection-description-block__truncated {
+    display: none;
+  }
+
+  show-more-component[data-expanded="true"] .collection-description-block__full {
+    display: block;
+  }
+
+  .collection-description-block__toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    margin-top: 0.5rem;
+    display: inline-block;
+  }
+
+  .collection-description-block__label {
+    display: inline;
+  }
+
+  show-more-component[data-expanded="true"] .collection-description-block__label--more {
+    display: none;
+  }
+
+  show-more-component[data-expanded="false"] .collection-description-block__label--less {
+    display: none;
+  }
+
+  show-more-component[data-expanded="true"] .collection-description-block__label--less {
+    display: inline;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection Description",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "text_alignment",
+      "id": "alignment",
+      "label": "Alignment",
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Read More/Less"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_read_more",
+      "label": "Enable Read More/Less",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "truncate_at",
+      "label": "Truncate After (words)",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "default": 50,
+      "visible_if": "{{ block.settings.enable_read_more }}"
+    },
+    {
+      "type": "text",
+      "id": "read_more_text",
+      "label": "Read More Text",
+      "default": "Read more",
+      "visible_if": "{{ block.settings.enable_read_more }}"
+    },
+    {
+      "type": "text",
+      "id": "read_less_text",
+      "label": "Read Less Text",
+      "default": "Read less",
+      "visible_if": "{{ block.settings.enable_read_more }}"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "Type Preset",
+      "options": [
+        {
+          "value": "rte",
+          "label": "Rich Text"
+        },
+        {
+          "value": "paragraph",
+          "label": "Paragraph"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "paragraph"
+    },
+    {
+      "type": "select",
+      "id": "font",
+      "label": "Font",
+      "options": [
+        {
+          "value": "var(--font-body--family)",
+          "label": "Body"
+        },
+        {
+          "value": "var(--font-subheading--family)",
+          "label": "Subheading"
+        },
+        {
+          "value": "var(--font-heading--family)",
+          "label": "Heading"
+        },
+        {
+          "value": "var(--font-accent--family)",
+          "label": "Accent"
+        }
+      ],
+      "default": "var(--font-body--family)",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "Font Size",
+      "options": [
+        {
+          "value": "0.875rem",
+          "label": "14px"
+        },
+        {
+          "value": "1rem",
+          "label": "16px"
+        },
+        {
+          "value": "1.125rem",
+          "label": "18px"
+        },
+        {
+          "value": "1.25rem",
+          "label": "20px"
+        },
+        {
+          "value": "1.5rem",
+          "label": "24px"
+        }
+      ],
+      "default": "1rem",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Description"
+    }
+  ]
+}
+{% endschema %}
+
