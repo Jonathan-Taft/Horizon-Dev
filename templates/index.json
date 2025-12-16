@@ -318,7 +318,7 @@
           "name": "t:names.image",
           "settings": {
             "link": "",
-            "title_text": "Apres Nails",
+            "title_text": "",
             "image_ratio": "adapt",
             "width": "fill",
             "custom_width": 100,
@@ -341,7 +341,7 @@
           "name": "t:names.image",
           "settings": {
             "link": "",
-            "title_text": "Gel & Nail Polish",
+            "title_text": "",
             "image_ratio": "adapt",
             "width": "fill",
             "custom_width": 100,
@@ -364,7 +364,7 @@
           "name": "t:names.image",
           "settings": {
             "link": "",
-            "title_text": "Nail Tools",
+            "title_text": "",
             "image_ratio": "adapt",
             "width": "fill",
             "custom_width": 100,
@@ -387,53 +387,7 @@
           "name": "t:names.image",
           "settings": {
             "link": "",
-            "title_text": "Nail Art",
-            "image_ratio": "adapt",
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "image_ke4Drr": {
-          "type": "image",
-          "name": "t:names.image",
-          "settings": {
-            "link": "",
-            "title_text": "Nail Extensions",
-            "image_ratio": "adapt",
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "image_xRRbLb": {
-          "type": "image",
-          "name": "t:names.image",
-          "settings": {
-            "link": "",
-            "title_text": "Nail Kits",
+            "title_text": "",
             "image_ratio": "adapt",
             "width": "fill",
             "custom_width": 100,
@@ -456,13 +410,11 @@
         "image_xhrfC4",
         "image_Ci77E4",
         "image_Q6MdJj",
-        "image_yrNQ3m",
-        "image_ke4Drr",
-        "image_xRRbLb"
+        "image_yrNQ3m"
       ],
       "name": "Custom Tutorial",
       "settings": {
-        "title": "",
+        "title": "Comfort Straight From The Box",
         "subtitle": "",
         "title_font_size": "1rem",
         "subtitle_font_size": "1rem",
@@ -470,7 +422,7 @@
         "subtitle_text_color": "",
         "background_color": "",
         "custom_css_class": "",
-        "title_alignment": "center",
+        "title_alignment": "left",
         "subtitle_alignment": "center",
         "padding_top": 2,
         "padding_bottom": 2,
@@ -480,7 +432,7 @@
         "padding_bottom_mobile": 1,
         "padding_left_mobile": 1,
         "padding_right_mobile": 1,
-        "desktop_columns": 6,
+        "desktop_columns": 4,
         "mobile_columns": 2
       }
     },
