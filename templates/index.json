@@ -16,14 +16,14 @@
           "type": "_slide",
           "settings": {
             "media_type_1": "image",
-            "image_1": "shopify://shop_images/woman-in-fur-under-neon.jpg",
+            "image_1": "shopify://shop_images/man-hiking-in-mountains.jpg",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "flex-end",
+            "vertical_alignment_flex_direction_column": "center",
             "gap": 12,
             "inherit_color_scheme": true,
             "color_scheme": "",
@@ -79,7 +79,7 @@
                 "text_MVVDFj": {
                   "type": "text",
                   "settings": {
-                    "text": "<h2>Apres Essentials</h2>",
+                    "text": "<h2>Avenger Trekking</h2>",
                     "width": "100%",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -104,7 +104,7 @@
                 "text_Pcmpnz": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Quality meets creativity</p>",
+                    "text": "<p>Military Grade Lining With Minimal Stiching</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -416,7 +416,7 @@
       "settings": {
         "title": "Comfort Straight From The Box",
         "subtitle": "",
-        "title_font_size": "1rem",
+        "title_font_size": "1.5",
         "subtitle_font_size": "1rem",
         "title_text_color": "",
         "subtitle_text_color": "",
@@ -424,10 +424,10 @@
         "custom_css_class": "",
         "title_alignment": "left",
         "subtitle_alignment": "center",
-        "padding_top": 2,
+        "padding_top": 4,
         "padding_bottom": 2,
-        "padding_left": 3,
-        "padding_right": 3,
+        "padding_left": 4,
+        "padding_right": 4,
         "padding_top_mobile": 1,
         "padding_bottom_mobile": 1,
         "padding_left_mobile": 1,
