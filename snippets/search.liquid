@@ -1,28 +1,45 @@
-{%- doc -%}
-  Renders the search action button.
+{% comment %}
+<!-- Designed by OnHOW YouTube Channel - Anas El Medlaoui -->
+{% endcomment %}
 
-  @param {string} [style] - The style of the search action.
-  @param {string} [class] - Additional classes for the search action.
-
-  @example
-  {% render 'search', style: 'default', class: 'custom-class' %}
-{%- enddoc -%}
 
 {% unless style == 'none' %}
-  <search-button class="search-action{% if class != blank %} {{ class | strip }}{% endif %}">
+  <search-button class="search-action onhow-search-wrapper{% if class != blank %} {{ class | strip }}{% endif %}">
+    
+    <!-- Desktop Search Bar -->
+    <form action="{{ routes.search_url }}" method="get" role="search" class="onhow-search-bar">
+      <div class="onhow-search-bar__container">
+        <span class="onhow-search-bar__icon svg-wrapper" aria-hidden="true">
+          {{ 'icon-search.svg' | inline_asset_content }}
+        </span>
+        <input
+          type="search"
+          name="q"
+          class="onhow-search-bar__input"
+          placeholder="{{ 'content.search_input_placeholder' | t }}"
+          value="{{ search.terms | escape }}"
+          autocomplete="off"
+        >
+        <input type="hidden" name="type" value="product">
+        <button type="submit" class="onhow-search-bar__submit visually-hidden">
+          {{ 'accessibility.search' | t }}
+        </button>
+      </div>
+    </form>
+    
     <button
       on:click="#search-modal/showDialog"
-      class="button button-unstyled search-modal__button header-actions__action"
-      aria-label="{{ 'content.search_input_label' | t }}"
-      aria-haspopup="dialog"
+      class="button button-unstyled search-modal__button header-actions__action onhow-mobile-search-icon"
+      name="Search"
     >
-      <span
-        aria-hidden="true"
-        class="svg-wrapper"
-      >
+      <span aria-hidden="true" class="svg-wrapper">
         {{ 'icon-search.svg' | inline_asset_content }}
       </span>
+      <span class="visually-hidden">
+        {{ 'accessibility.open_search_modal' | t }}
+      </span>
     </button>
+    
   </search-button>
 {% endunless %}
 
@@ -30,24 +47,111 @@
   .search-action {
     --search-border-radius: var(--style-border-radius-inputs);
     --search-border-width: var(--style-border-width-inputs);
-
     display: flex;
   }
-
+  
   .header__column--center .search-action {
     width: auto;
     flex-grow: 1;
   }
-
+  
   :is(.header__column--left, .header__column--center) .search-action {
-    @media screen and (min-width: 750px) {
+    @media screen and (width >= 750px) {
       margin-inline: calc(var(--padding-lg) * -1);
     }
   }
-
+  
   .header__column--right .search-action {
-    @media screen and (min-width: 750px) {
+    @media screen and (width >= 750px) {
       margin-inline: calc(var(--gap-md) * -1) calc(var(--gap-xs) * -1);
     }
+  }
+  .onhow-search-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .onhow-search-bar {
+    display: none;
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .onhow-search-bar__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: rgba(from var(--color-input-background) r g b / 0.38);
+    border: var(--search-border-width) solid rgba(from var(--color-input-border) r g b / 0.26);
+    border-radius: var(--search-border-radius);
+    transition: all 0.3s ease;
+  }
+
+  .onhow-search-bar__container:focus-within {
+    background-color: var(--color-input-background);
+    border-color: var(--color-foreground);
+  }
+
+  .onhow-search-bar__icon {
+    position: absolute;
+    left: calc(var(--padding-md) * 0.8);
+    z-index: 1;
+    color: var(--color-input-text);
+    opacity: 0.6;
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+    pointer-events: none;
+  }
+
+  .onhow-search-bar__input {
+    width: 100%;
+    background: #f2f2f2;
+    border: 1px solid var(--color-input-border);
+    border-radius: 25px;
+    padding: calc(var(--padding-md) * 0.8) calc(var(--padding-md) * 0.8) calc(var(--padding-md) * 0.8) calc(var(--icon-size-md) + var(--padding-lg));
+    font-family: var(--font-body-family);
+    font-size: var(--font-size-sm);
+    color: var(--color-input-text);
+    outline: none;
+  }
+
+  .onhow-search-bar__input::placeholder {
+    color: rgba(from var(--color-input-text) r g b / 0.6);
+  }
+
+  .onhow-mobile-search-icon {
+    display: flex;
+  }
+
+  @media screen and (min-width: 750px) {
+    .onhow-search-bar {
+      display: block;
+    }
+    
+    .onhow-mobile-search-icon {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .onhow-search-bar {
+      display: none !important;
+    }
+    
+    .onhow-mobile-search-icon {
+      display: flex;
+    }
+  }
+
+  .header__column--center .onhow-search-wrapper {
+    justify-content: center;
+  }
+
+  .header__column--right .onhow-search-wrapper {
+    justify-content: flex-end;
+  }
+
+  .header__column--right .onhow-search-bar {
+    margin-left: auto;
   }
 {% endstylesheet %}
