@@ -14,6 +14,20 @@
     "header_announcements_9jGBFp": {
       "type": "header-announcements",
       "blocks": {
+        "announcement_ranUDV": {
+          "type": "_announcement",
+          "name": "t:names.announcement",
+          "settings": {
+            "text": "Shop our latest arrivals!",
+            "link": "",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none"
+          },
+          "blocks": {}
+        },
         "announcement_QzMm8T": {
           "type": "_announcement",
           "name": "t:names.announcement",
@@ -43,6 +57,7 @@
         }
       },
       "block_order": [
+        "announcement_ranUDV",
         "announcement_QzMm8T",
         "announcement_BxgCk9"
       ],
