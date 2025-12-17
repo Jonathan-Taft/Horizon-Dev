@@ -313,6 +313,52 @@
     "my_custom_section_fykA4h": {
       "type": "my-custom-section",
       "blocks": {
+        "image_JALzDF": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "link": "",
+            "title_text": "",
+            "image_ratio": "adapt",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "image_HhRpL8": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "link": "",
+            "title_text": "",
+            "image_ratio": "adapt",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
         "image_xhrfC4": {
           "type": "image",
           "name": "t:names.image",
@@ -358,59 +404,13 @@
             "padding-inline-end": 0
           },
           "blocks": {}
-        },
-        "image_Q6MdJj": {
-          "type": "image",
-          "name": "t:names.image",
-          "settings": {
-            "link": "",
-            "title_text": "",
-            "image_ratio": "adapt",
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "image_yrNQ3m": {
-          "type": "image",
-          "name": "t:names.image",
-          "settings": {
-            "link": "",
-            "title_text": "",
-            "image_ratio": "adapt",
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
         }
       },
       "block_order": [
+        "image_JALzDF",
+        "image_HhRpL8",
         "image_xhrfC4",
-        "image_Ci77E4",
-        "image_Q6MdJj",
-        "image_yrNQ3m"
+        "image_Ci77E4"
       ],
       "name": "Custom Tutorial",
       "settings": {
@@ -418,12 +418,12 @@
         "subtitle": "",
         "title_font_size": "1.5",
         "subtitle_font_size": "1rem",
-        "title_text_color": "",
+        "title_text_color": "#000000",
         "subtitle_text_color": "",
         "background_color": "",
         "custom_css_class": "",
         "title_alignment": "left",
-        "subtitle_alignment": "center",
+        "subtitle_alignment": "left",
         "padding_top": 4,
         "padding_bottom": 2,
         "padding_left": 4,
