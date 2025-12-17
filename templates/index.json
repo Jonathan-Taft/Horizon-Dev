@@ -23,8 +23,8 @@
             "vertical_alignment": "center",
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 27,
             "inherit_color_scheme": true,
             "color_scheme": "",
             "toggle_overlay": false,
@@ -46,10 +46,10 @@
                 "vertical_alignment": "center",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "vertical_alignment_flex_direction_column": "flex-start",
+                "gap": 15,
                 "width": "custom",
-                "custom_width": 50,
+                "custom_width": 60,
                 "width_mobile": "custom",
                 "custom_width_mobile": 85,
                 "height": "fit",
@@ -72,10 +72,24 @@
                 "placeholder": "",
                 "padding-block-start": 48,
                 "padding-block-end": 48,
-                "padding-inline-start": 48,
+                "padding-inline-start": 100,
                 "padding-inline-end": 48
               },
               "blocks": {
+                "spacer_rY3jPA": {
+                  "type": "spacer",
+                  "name": "t:names.spacer",
+                  "settings": {
+                    "size": "pixel",
+                    "percent_size": 100,
+                    "pixel_size": 52,
+                    "custom_mobile_size": false,
+                    "size_mobile": "percent",
+                    "percent_size_mobile": 100,
+                    "pixel_size_mobile": 120
+                  },
+                  "blocks": {}
+                },
                 "text_MVVDFj": {
                   "type": "text",
                   "settings": {
@@ -142,6 +156,7 @@
                 }
               },
               "block_order": [
+                "spacer_rY3jPA",
                 "text_MVVDFj",
                 "text_Pcmpnz",
                 "button_yzeHAm"
@@ -299,7 +314,7 @@
       ],
       "name": "t:names.slideshow",
       "settings": {
-        "icons_style": "arrows_large",
+        "icons_style": "none",
         "slideshow_controls_style": "dots",
         "color_scheme": "",
         "autoplay": false,
@@ -481,7 +496,7 @@
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "rte",
+                "type_preset": "h4",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
@@ -503,7 +518,7 @@
               "type": "_product-list-button",
               "name": "t:names.product_list_button",
               "settings": {
-                "label": "View all",
+                "label": "Online Exclusives",
                 "open_in_new_tab": false,
                 "style_class": "link",
                 "width": "fit-content",
@@ -545,7 +560,7 @@
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
-                "border_radius": 0,
+                "border_radius": 25,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -620,12 +635,12 @@
         "mobile_card_size": "60cqw",
         "columns_gap": 8,
         "rows_gap": 24,
-        "icons_style": "arrow",
+        "icons_style": "none",
         "icons_shape": "circle",
         "section_width": "page-width",
         "horizontal_alignment": "flex-start",
         "gap": 28,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-3",
         "padding-block-start": 48,
         "padding-block-end": 48
       }
@@ -641,9 +656,9 @@
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
+            "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "space-between",
-            "gap": 32,
+            "gap": 15,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -654,11 +669,12 @@
             "color_scheme": "scheme-5",
             "background_media": "image",
             "video_position": "cover",
+            "background_image": "shopify://shop_images/hiker-running-up-beaten-track-between-the-trees.jpg",
             "background_image_position": "cover",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
-            "border_radius": 0,
+            "border_radius": 25,
             "toggle_overlay": false,
             "overlay_color": "#00000026",
             "overlay_style": "solid",
@@ -672,6 +688,57 @@
             "padding-inline-end": 40
           },
           "blocks": {
+            "text_9JMCA9": {
+              "type": "text",
+              "settings": {
+                "text": "<h3>FREE ACCESSORY PACK WORTH £24.99</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_nXgnNJ": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>With All Purchases Over £70*</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "spacer_iyKVbk": {
               "type": "spacer",
               "settings": {
@@ -685,55 +752,27 @@
               },
               "blocks": {}
             },
-            "text_9JMCA9": {
-              "type": "text",
+            "button_BNN6xi": {
+              "type": "button",
+              "name": "t:names.button",
               "settings": {
-                "text": "<h3>New arrivals</h3>",
+                "label": "Shop now",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button-secondary",
                 "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "center",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "three_buttons_EEWjLm": {
-              "type": "three-buttons",
-              "name": "Three Buttons",
-              "settings": {
-                "button_1_label": "Button 1",
-                "button_1_link": "shopify://products/black-leather-bag",
-                "button_1_open_in_new_tab": false,
-                "button_1_style": "button",
-                "button_2_label": "Button 2",
-                "button_2_link": "shopify://collections/frontpage",
-                "button_2_open_in_new_tab": false,
-                "button_2_style": "button",
-                "button_3_label": "Button 3",
-                "button_3_link": "shopify://collections/jackets",
-                "button_3_open_in_new_tab": false,
-                "button_3_style": "button"
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
               },
               "blocks": {}
             }
           },
           "block_order": [
-            "spacer_iyKVbk",
             "text_9JMCA9",
-            "three_buttons_EEWjLm"
+            "text_nXgnNJ",
+            "spacer_iyKVbk",
+            "button_BNN6xi"
           ]
         },
         "group_HBxAAh": {
@@ -744,9 +783,9 @@
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
+            "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "space-between",
-            "gap": 32,
+            "gap": 15,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -757,11 +796,12 @@
             "color_scheme": "scheme-5",
             "background_media": "image",
             "video_position": "cover",
+            "background_image": "shopify://shop_images/pet-and-owner-on-fall-walk.jpg",
             "background_image_position": "cover",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
-            "border_radius": 0,
+            "border_radius": 25,
             "toggle_overlay": false,
             "overlay_color": "#00000026",
             "overlay_style": "solid",
@@ -775,23 +815,10 @@
             "padding-inline-end": 40
           },
           "blocks": {
-            "spacer_LFp8HV": {
-              "type": "spacer",
-              "settings": {
-                "size": "pixel",
-                "percent_size": 100,
-                "pixel_size": 160,
-                "custom_mobile_size": false,
-                "size_mobile": "percent",
-                "percent_size_mobile": 100,
-                "pixel_size_mobile": 120
-              },
-              "blocks": {}
-            },
             "text_3CAcGD": {
               "type": "text",
               "settings": {
-                "text": "<h3>Bestsellers</h3>",
+                "text": "<h3>DARTMOOR BROWN WALKING SHOE</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "center",
@@ -813,30 +840,66 @@
               },
               "blocks": {}
             },
-            "three_buttons_gMn7zA": {
-              "type": "three-buttons",
-              "name": "Three Buttons",
+            "text_cTDn8e": {
+              "type": "text",
+              "name": "t:names.text",
               "settings": {
-                "button_1_label": "Button 1",
-                "button_1_link": "shopify://products/classic-varsity-top",
-                "button_1_open_in_new_tab": false,
-                "button_1_style": "button",
-                "button_2_label": "Button 2",
-                "button_2_link": "shopify://products/floral-white-top",
-                "button_2_open_in_new_tab": false,
-                "button_2_style": "button",
-                "button_3_label": "Button 3",
-                "button_3_link": "shopify://products/ocean-blue-shirt",
-                "button_3_open_in_new_tab": false,
-                "button_3_style": "button"
+                "text": "<p>Award winning, Grisport's No 1 shoe</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "spacer_LFp8HV": {
+              "type": "spacer",
+              "settings": {
+                "size": "pixel",
+                "percent_size": 100,
+                "pixel_size": 160,
+                "custom_mobile_size": false,
+                "size_mobile": "percent",
+                "percent_size_mobile": 100,
+                "pixel_size_mobile": 120
+              },
+              "blocks": {}
+            },
+            "button_dRVhk8": {
+              "type": "button",
+              "name": "t:names.button",
+              "settings": {
+                "label": "Shop now",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button-secondary",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
               },
               "blocks": {}
             }
           },
           "block_order": [
-            "spacer_LFp8HV",
             "text_3CAcGD",
-            "three_buttons_gMn7zA"
+            "text_cTDn8e",
+            "spacer_LFp8HV",
+            "button_dRVhk8"
           ]
         }
       },
@@ -854,8 +917,8 @@
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 15,
-        "section_width": "full-width",
-        "section_height": "small",
+        "section_width": "page-width",
+        "section_height": "",
         "section_height_custom": 50,
         "color_scheme": "",
         "background_media": "none",
@@ -864,13 +927,13 @@
         "border": "none",
         "border_width": 1,
         "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
+        "border_radius": 25,
+        "toggle_overlay": true,
+        "overlay_color": "#ffffff",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-start": 40,
+        "padding-block-end": 40
       }
     },
     "my_custom_section_nwkDN8": {

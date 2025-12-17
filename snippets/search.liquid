@@ -74,7 +74,17 @@
   .onhow-search-bar {
     display: none;
     width: 100%;
-    max-width: 250px;
+    max-width: 500px;
+  }
+  
+  /* Allow search bar to grow more when in center column */
+  .header__column--center .onhow-search-bar {
+    max-width: 600px;
+  }
+  
+  /* Allow search bar to grow when in left column */
+  .header__column--left .onhow-search-bar {
+    max-width: 400px;
   }
 
   .onhow-search-bar__container {
@@ -97,7 +107,7 @@
     left: calc(var(--padding-md) * 0.8);
     z-index: 1;
     color: var(--color-input-text);
-    opacity: 0.6;
+    opacity: 1;
     width: var(--icon-size-md);
     height: var(--icon-size-md);
     pointer-events: none;
