@@ -52,7 +52,7 @@ class ShowMoreComponent extends Component {
   /**
    * @constant {number}
    */
-  #animationSpeed = 300;
+  #animationSpeed = 400;
 
   connectedCallback() {
     super.connectedCallback();
@@ -114,7 +114,7 @@ class ShowMoreComponent extends Component {
       },
       {
         duration: this.#animationSpeed,
-        easing: 'ease-in-out',
+        easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
       }
     );
 
