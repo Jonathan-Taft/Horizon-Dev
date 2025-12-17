@@ -678,7 +678,7 @@
               "settings": {
                 "text": "<h3>FREE ACCESSORY PACK WORTH £24.99</h3>",
                 "width": "fit-content",
-                "max_width": "normal",
+                "max_width": "narrow",
                 "alignment": "center",
                 "type_preset": "h3",
                 "font": "var(--font-body--family)",
@@ -805,7 +805,7 @@
               "settings": {
                 "text": "<h3>DARTMOOR BROWN WALKING SHOE</h3>",
                 "width": "fit-content",
-                "max_width": "normal",
+                "max_width": "narrow",
                 "alignment": "center",
                 "type_preset": "h3",
                 "font": "var(--font-body--family)",
