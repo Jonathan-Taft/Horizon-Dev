@@ -60,7 +60,7 @@
           "settings": {
             "alignment": "left",
             "enable_read_more": true,
-            "truncate_at": 50,
+            "truncate_at": 40,
             "read_more_text": "Read more",
             "read_less_text": "Read less",
             "type_preset": "paragraph",
