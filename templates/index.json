@@ -921,43 +921,6 @@
         "padding-block-end": 0
       }
     },
-    "my_custom_section_nwkDN8": {
-      "type": "my-custom-section",
-      "blocks": {
-        "colours_kbfrpM": {
-          "type": "colours",
-          "name": "Colours",
-          "settings": {},
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "colours_kbfrpM"
-      ],
-      "name": "Custom Section Template",
-      "settings": {
-        "title": "Shop By Colour",
-        "subtitle": "",
-        "title_font_size": "1rem",
-        "subtitle_font_size": "1rem",
-        "title_text_color": "",
-        "subtitle_text_color": "",
-        "background_color": "",
-        "custom_css_class": "",
-        "title_alignment": "left",
-        "subtitle_alignment": "center",
-        "padding_top": 2,
-        "padding_bottom": 1,
-        "padding_left": 3,
-        "padding_right": 3,
-        "padding_top_mobile": 1,
-        "padding_bottom_mobile": 1,
-        "padding_left_mobile": 1,
-        "padding_right_mobile": 1,
-        "desktop_columns": 1,
-        "mobile_columns": 1
-      }
-    },
     "divider_7gBWBY": {
       "type": "divider",
       "name": "t:names.divider_section",
@@ -978,7 +941,6 @@
     "my_custom_section_fykA4h",
     "product_list_9EGLkF",
     "section_cDgYiF",
-    "my_custom_section_nwkDN8",
     "divider_7gBWBY"
   ]
 }
