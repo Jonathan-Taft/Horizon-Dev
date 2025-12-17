@@ -79,8 +79,8 @@
       "name": "Collection Header",
       "settings": {
         "section_width": "page-width",
-        "color_scheme": "",
-        "background_image": "shopify://shop_images/northern-forest.jpg",
+        "color_scheme": "scheme-3",
+        "background_image": "shopify://shop_images/handful-of-acorns.jpg",
         "background_image_position": "cover",
         "overlay_enabled": false,
         "overlay_color": "#000000",
