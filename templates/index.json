@@ -920,27 +920,12 @@
         "padding-block-start": 40,
         "padding-block-end": 40
       }
-    },
-    "divider_7gBWBY": {
-      "type": "divider",
-      "name": "t:names.divider_section",
-      "settings": {
-        "color_scheme": "",
-        "section_width": "full-width",
-        "thickness": 1,
-        "corner_radius": "square",
-        "width_percent": 95,
-        "alignment_horizontal": "center",
-        "padding-block-start": 16,
-        "padding-block-end": 16
-      }
     }
   },
   "order": [
     "slideshow_CW993A",
     "my_custom_section_fykA4h",
     "product_list_9EGLkF",
-    "section_cDgYiF",
-    "divider_7gBWBY"
+    "section_cDgYiF"
   ]
 }
