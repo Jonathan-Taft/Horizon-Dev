@@ -1,0 +1,568 @@
+{%- doc -%}
+  Renders a product accordion with summary, description, and delivery/returns information.
+  
+  @example
+  {% content_for 'block', type: 'product-accordion', id: 'product-accordion' %}
+{%- enddoc -%}
+
+{%- assign block_settings = block.settings -%}
+
+<div
+  class="product-accordion accordion accordion--{{ block.id }} accordion--{{ block_settings.icon }} border-style spacing-style{% if block_settings.inherit_color_scheme == false %} color-{{ block_settings.color_scheme }}{% endif %}{% if block_settings.dividers %} accordion--dividers{% endif %}"
+  style="
+    --summary-font-family: var(--font-{{ block_settings.type_preset }}--family);
+    --summary-font-style: var(--font-{{ block_settings.type_preset }}--style);
+    --summary-font-weight: var(--font-{{ block_settings.type_preset }}--weight);
+    --summary-font-size: var(--font-{{ block_settings.type_preset }}--size);
+    --summary-font-line-height: var(--font-{{ block_settings.type_preset }}--line-height);
+    --summary-font-case: var(--font-{{ block_settings.type_preset }}--case);
+    {% render 'spacing-style', settings: block_settings %}
+    {% render 'border-override', settings: block_settings %}
+  "
+  {{ block.shopify_attributes }}
+>
+  {%- comment -%} Product Summary Row {%- endcomment -%}
+  {% if block_settings.show_summary %}
+    <accordion-custom
+      {% if block_settings.summary_open_by_default %}
+        open-by-default-on-desktop
+        open-by-default-on-mobile
+      {% endif %}
+    >
+      <details
+        class="details"
+        data-testid="accordion-details"
+      >
+        <summary class="details__header">
+          {% render 'icon-or-image',
+            icon: block_settings.summary_icon,
+            image_upload: block_settings.summary_image_upload,
+            width: block_settings.summary_icon_width,
+            class_name: 'details__icon'
+          %}
+          {{ block_settings.summary_heading | default: 'Summary' }}
+          <span class="svg-wrapper icon-caret icon-animated">
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </span>
+          <span class="svg-wrapper icon-plus">
+            {{- 'icon-plus.svg' | inline_asset_content -}}
+          </span>
+        </summary>
+        <div class="details-content">
+          {% if block_settings.summary_text != blank %}
+            <div class="rte">
+              {{ block_settings.summary_text }}
+            </div>
+          {% elsif closest.product != blank and closest.product.description != blank %}
+            <div class="rte">
+              {{ closest.product.description | strip_html | truncatewords: 50 }}
+            </div>
+          {% endif %}
+        </div>
+      </details>
+    </accordion-custom>
+  {% endif %}
+
+  {%- comment -%} Product Description Row {%- endcomment -%}
+  {% if block_settings.show_description %}
+    <accordion-custom
+      {% if block_settings.description_open_by_default %}
+        open-by-default-on-desktop
+        open-by-default-on-mobile
+      {% endif %}
+    >
+      <details
+        class="details"
+        data-testid="accordion-details"
+      >
+        <summary class="details__header">
+          {% render 'icon-or-image',
+            icon: block_settings.description_icon,
+            image_upload: block_settings.description_image_upload,
+            width: block_settings.description_icon_width,
+            class_name: 'details__icon'
+          %}
+          {{ block_settings.description_heading | default: 'Description' }}
+          <span class="svg-wrapper icon-caret icon-animated">
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </span>
+          <span class="svg-wrapper icon-plus">
+            {{- 'icon-plus.svg' | inline_asset_content -}}
+          </span>
+        </summary>
+        <div class="details-content">
+          {% if closest.product != blank and closest.product.description != blank %}
+            <div class="rte">
+              {{ closest.product.description }}
+            </div>
+          {% elsif block_settings.description_fallback_text != blank %}
+            <div class="rte">
+              {{ block_settings.description_fallback_text }}
+            </div>
+          {% endif %}
+        </div>
+      </details>
+    </accordion-custom>
+  {% endif %}
+
+  {%- comment -%} Delivery and Returns Row {%- endcomment -%}
+  {% if block_settings.show_delivery_returns %}
+    <accordion-custom
+      {% if block_settings.delivery_returns_open_by_default %}
+        open-by-default-on-desktop
+        open-by-default-on-mobile
+      {% endif %}
+    >
+      <details
+        class="details"
+        data-testid="accordion-details"
+      >
+        <summary class="details__header">
+          {% render 'icon-or-image',
+            icon: block_settings.delivery_returns_icon,
+            image_upload: block_settings.delivery_returns_image_upload,
+            width: block_settings.delivery_returns_icon_width,
+            class_name: 'details__icon'
+          %}
+          {{ block_settings.delivery_returns_heading | default: 'Delivery & Returns' }}
+          <span class="svg-wrapper icon-caret icon-animated">
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </span>
+          <span class="svg-wrapper icon-plus">
+            {{- 'icon-plus.svg' | inline_asset_content -}}
+          </span>
+        </summary>
+        <div class="details-content">
+          {% if block_settings.delivery_returns_text != blank %}
+            <div class="rte">
+              {{ block_settings.delivery_returns_text }}
+            </div>
+          {% endif %}
+        </div>
+      </details>
+    </accordion-custom>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .product-accordion {
+    flex: 1;
+    width: 100%;
+  }
+
+  .product-accordion--dividers accordion-custom:not(:first-child) .details {
+    border-block-start: var(--style-border-width) solid var(--color-border);
+  }
+
+  .product-accordion--dividers .details-content {
+    padding-block-end: var(--padding-sm);
+  }
+
+  .product-accordion--caret .icon-plus,
+  .product-accordion--plus .icon-caret {
+    display: none;
+  }
+
+  .product-accordion .details__header {
+    font-family: var(--summary-font-family);
+    font-style: var(--summary-font-style);
+    font-weight: var(--summary-font-weight);
+    font-size: var(--summary-font-size);
+    line-height: var(--summary-font-line-height);
+    text-transform: var(--summary-font-case);
+    min-height: var(--minimum-touch-target);
+  }
+
+  .product-accordion .details__icon {
+    height: auto;
+    margin-inline-end: var(--margin-xs);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product Accordion",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Accordion Style"
+    },
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "Icon Style",
+      "options": [
+        {
+          "value": "caret",
+          "label": "Caret"
+        },
+        {
+          "value": "plus",
+          "label": "Plus"
+        }
+      ],
+      "default": "caret"
+    },
+    {
+      "type": "checkbox",
+      "id": "dividers",
+      "label": "Show Dividers",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "Heading Preset",
+      "options": [
+        {
+          "value": "",
+          "label": "Default"
+        },
+        {
+          "value": "paragraph",
+          "label": "Paragraph"
+        },
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        }
+      ],
+      "default": "h6"
+    },
+    {
+      "type": "checkbox",
+      "id": "inherit_color_scheme",
+      "label": "Inherit Color Scheme",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1",
+      "visible_if": "{{ block.settings.inherit_color_scheme == false }}"
+    },
+    {
+      "type": "header",
+      "content": "Product Summary"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_summary",
+      "label": "Show Summary",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "summary_heading",
+      "label": "Summary Heading",
+      "default": "Summary"
+    },
+    {
+      "type": "checkbox",
+      "id": "summary_open_by_default",
+      "label": "Open by Default",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "summary_icon",
+      "label": "Icon",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "clipboard",
+          "label": "Clipboard"
+        },
+        {
+          "value": "star",
+          "label": "Star"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "image_picker",
+      "id": "summary_image_upload",
+      "label": "Custom Icon Image"
+    },
+    {
+      "type": "range",
+      "id": "summary_icon_width",
+      "label": "Icon Width",
+      "min": 12,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "richtext",
+      "id": "summary_text",
+      "label": "Summary Text",
+      "info": "If left blank, will use truncated product description"
+    },
+    {
+      "type": "header",
+      "content": "Product Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show Description",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "description_heading",
+      "label": "Description Heading",
+      "default": "Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "description_open_by_default",
+      "label": "Open by Default",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "description_icon",
+      "label": "Icon",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "clipboard",
+          "label": "Clipboard"
+        },
+        {
+          "value": "eye",
+          "label": "Eye"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "image_picker",
+      "id": "description_image_upload",
+      "label": "Custom Icon Image"
+    },
+    {
+      "type": "range",
+      "id": "description_icon_width",
+      "label": "Icon Width",
+      "min": 12,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "richtext",
+      "id": "description_fallback_text",
+      "label": "Fallback Text",
+      "info": "Used when product description is not available"
+    },
+    {
+      "type": "header",
+      "content": "Delivery & Returns"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_delivery_returns",
+      "label": "Show Delivery & Returns",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "delivery_returns_heading",
+      "label": "Heading",
+      "default": "Delivery & Returns"
+    },
+    {
+      "type": "checkbox",
+      "id": "delivery_returns_open_by_default",
+      "label": "Open by Default",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "delivery_returns_icon",
+      "label": "Icon",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "truck",
+          "label": "Truck"
+        },
+        {
+          "value": "return",
+          "label": "Return"
+        }
+      ],
+      "default": "truck"
+    },
+    {
+      "type": "image_picker",
+      "id": "delivery_returns_image_upload",
+      "label": "Custom Icon Image"
+    },
+    {
+      "type": "range",
+      "id": "delivery_returns_icon_width",
+      "label": "Icon Width",
+      "min": 12,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "richtext",
+      "id": "delivery_returns_text",
+      "label": "Delivery & Returns Text"
+    },
+    {
+      "type": "header",
+      "content": "Borders"
+    },
+    {
+      "type": "select",
+      "id": "border",
+      "label": "Border Style",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "solid",
+          "label": "Solid"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Width",
+      "default": 1,
+      "visible_if": "{{ block.settings.border != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Border Opacity",
+      "default": 100,
+      "visible_if": "{{ block.settings.border != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border Radius",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "Left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "Right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Accordion",
+      "settings": {
+        "show_summary": true,
+        "summary_heading": "Summary",
+        "show_description": true,
+        "description_heading": "Description",
+        "show_delivery_returns": true,
+        "delivery_returns_heading": "Delivery & Returns",
+        "delivery_returns_icon": "truck",
+        "dividers": true,
+        "icon": "caret"
+      }
+    }
+  ]
+}
+{% endschema %}
+

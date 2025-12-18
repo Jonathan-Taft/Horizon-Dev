@@ -1,0 +1,103 @@
+{%- doc -%}
+  Renders technical features from product metafield custom.features as pills.
+  
+  @example
+  {% content_for 'block', type: 'technical-features', id: 'technical-features' %}
+{%- enddoc -%}
+
+{%- assign block_settings = block.settings -%}
+{%- assign product = closest.product | default: product -%}
+{%- assign features = product.metafields.custom.features.value -%}
+
+{%- if features != blank or request.design_mode -%}
+  <div
+    class="technical-features"
+    {{ block.shopify_attributes }}
+  >
+    {% if block_settings.title != blank %}
+      <h2 class="technical-features__title">{{ block_settings.title | escape }}</h2>
+    {% endif %}
+
+    {% if features != blank %}
+      <div class="technical-features__list">
+        {%- liquid
+          assign is_list = false
+          if features.size > 0
+            assign is_list = true
+          endif
+        -%}
+        {% if is_list %}
+          {%- comment -%} List metafield (array) {%- endcomment -%}
+          {% for feature in features %}
+            {% if feature != blank %}
+              <span class="technical-features__pill">{{ feature | escape }}</span>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          {%- comment -%} Single value metafield {%- endcomment -%}
+          <span class="technical-features__pill">{{ features | escape }}</span>
+        {% endif %}
+      </div>
+    {% elsif request.design_mode %}
+      <div class="technical-features__list">
+        <span class="technical-features__pill">Feature 1</span>
+        <span class="technical-features__pill">Feature 2</span>
+        <span class="technical-features__pill">Feature 3</span>
+      </div>
+    {% endif %}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .technical-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .technical-features__title {
+    margin: 0;
+    font-size: var(--font-h3--size, 1.5rem);
+    font-weight: var(--font-h3--weight, 600);
+    line-height: var(--font-h3--line-height, 1.2);
+  }
+
+  .technical-features__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .technical-features__pill {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-background, #f5f5f5);
+    color: var(--color-foreground, #000);
+    border: 1px solid var(--color-border, #e0e0e0);
+    border-radius: 25px;
+    font-size: var(--font-paragraph--size, 1rem);
+    line-height: var(--font-paragraph--line-height, 1.5);
+    white-space: nowrap;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Technical Features",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Technical features"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Technical Features"
+    }
+  ]
+}
+{% endschema %}
+
