@@ -313,6 +313,45 @@
         "padding-block-end": 0
       }
     },
+    "divider_UwmFdH": {
+      "type": "divider",
+      "name": "t:names.divider_section",
+      "settings": {
+        "color_scheme": "",
+        "section_width": "page-width",
+        "thickness": 2,
+        "corner_radius": "square",
+        "width_percent": 65,
+        "alignment_horizontal": "flex-start",
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
+    },
+    "technical_features_section_yhWFJe": {
+      "type": "technical-features-section",
+      "blocks": {
+        "technical_features_XFdCxc": {
+          "type": "technical-features",
+          "settings": {
+            "title": "Technical features"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "technical_features_XFdCxc"
+      ],
+      "name": "Technical Features Section",
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "gap": 12,
+        "section_width": "page-width",
+        "color_scheme": "",
+        "padding-block-start": 10,
+        "padding-block-end": 10
+      }
+    },
     "product_recommendations_qggXJq": {
       "type": "product-recommendations",
       "blocks": {
@@ -453,36 +492,12 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
-    },
-    "technical_features_section_yhWFJe": {
-      "type": "technical-features-section",
-      "blocks": {
-        "technical_features_XFdCxc": {
-          "type": "technical-features",
-          "settings": {
-            "title": "Technical features"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "technical_features_XFdCxc"
-      ],
-      "name": "Technical Features Section",
-      "settings": {
-        "content_direction": "column",
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "gap": 12,
-        "section_width": "page-width",
-        "color_scheme": "",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
     }
   },
   "order": [
     "breadcrumbs_gcKbRE",
     "main",
+    "divider_UwmFdH",
     "technical_features_section_yhWFJe",
     "product_recommendations_qggXJq"
   ]
