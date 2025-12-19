@@ -219,6 +219,17 @@
               },
               "blocks": {}
             },
+            "product_info_box_KeKMAa": {
+              "type": "product-info-box",
+              "name": "Product Info Box",
+              "settings": {
+                "title": "FREE ACCESSORY PACK WORTH £24.99",
+                "subtitle": "With all purchases over £70*",
+                "image": "shopify://shop_images/1764946654-21106500_b7e13bb8-b517-43c2-9bee-e749a0d9806a.jpg",
+                "background_color": "#f5f5f5"
+              },
+              "blocks": {}
+            },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
               "settings": {
@@ -297,6 +308,7 @@
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",
+            "product_info_box_KeKMAa",
             "buy_buttons_eYQEYi",
             "product_accordion_QghtqU"
           ]
