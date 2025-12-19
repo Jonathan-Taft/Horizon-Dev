@@ -52,7 +52,7 @@
             "video_loop": false,
             "hide_variants": true,
             "padding-block-start": 0,
-            "padding-block-end": 0,
+            "padding-block-end": 15,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -219,6 +219,17 @@
               },
               "blocks": {}
             },
+            "product_info_box_KeKMAa": {
+              "type": "product-info-box",
+              "name": "Product Info Box",
+              "settings": {
+                "title": "FREE ACCESSORY PACK WORTH £24.99",
+                "subtitle": "With all purchases over £70*",
+                "image": "shopify://shop_images/1764946654-21106500_b7e13bb8-b517-43c2-9bee-e749a0d9806a.jpg",
+                "background_color": "#f5f5f5"
+              },
+              "blocks": {}
+            },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
               "settings": {
@@ -241,7 +252,7 @@
                   "type": "add-to-cart",
                   "static": true,
                   "settings": {
-                    "style_class": "button"
+                    "style_class": "button-secondary"
                   },
                   "blocks": {}
                 },
@@ -254,25 +265,37 @@
               },
               "block_order": []
             },
-            "text_aEtTtq": {
-              "type": "text",
-              "name": "Product description",
+            "product_accordion_QghtqU": {
+              "type": "product-accordion",
+              "name": "Product Accordion",
               "settings": {
-                "text": "{{ closest.product.description }}",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-primary--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
+                "icon": "caret",
+                "dividers": true,
+                "type_preset": "h5",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "show_summary": true,
+                "summary_heading": "Summary",
+                "summary_open_by_default": false,
+                "summary_icon": "none",
+                "summary_icon_width": 20,
+                "summary_text": "",
+                "show_description": true,
+                "description_heading": "Description",
+                "description_open_by_default": false,
+                "description_icon": "none",
+                "description_icon_width": 20,
+                "description_fallback_text": "",
+                "show_delivery_returns": true,
+                "delivery_returns_heading": "Delivery & Returns",
+                "delivery_returns_open_by_default": false,
+                "delivery_returns_icon": "none",
+                "delivery_returns_icon_width": 20,
+                "delivery_returns_text": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -285,8 +308,9 @@
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",
+            "product_info_box_KeKMAa",
             "buy_buttons_eYQEYi",
-            "text_aEtTtq"
+            "product_accordion_QghtqU"
           ]
         }
       },
@@ -295,10 +319,63 @@
         "desktop_media_position": "left",
         "equal_columns": false,
         "limit_details_width": false,
-        "gap": 48,
+        "gap": 60,
         "color_scheme": "",
         "padding-block-start": 0,
         "padding-block-end": 0
+      }
+    },
+    "divider_UwmFdH": {
+      "type": "divider",
+      "name": "t:names.divider_section",
+      "settings": {
+        "color_scheme": "",
+        "section_width": "page-width",
+        "thickness": 2,
+        "corner_radius": "square",
+        "width_percent": 50,
+        "alignment_horizontal": "flex-start",
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
+    },
+    "technical_features_section_yhWFJe": {
+      "type": "technical-features-section",
+      "blocks": {
+        "technical_features_XFdCxc": {
+          "type": "technical-features",
+          "settings": {
+            "title": "Technical features"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "technical_features_XFdCxc"
+      ],
+      "name": "Technical Features Section",
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "gap": 12,
+        "section_width": "page-width",
+        "color_scheme": "",
+        "padding-block-start": 20,
+        "padding-block-end": 20
+      }
+    },
+    "divider_HXgCkK": {
+      "type": "divider",
+      "name": "t:names.divider_section",
+      "settings": {
+        "color_scheme": "",
+        "section_width": "page-width",
+        "thickness": 2,
+        "corner_radius": "square",
+        "width_percent": 50,
+        "alignment_horizontal": "flex-start",
+        "padding-block-start": 16,
+        "padding-block-end": 16
       }
     },
     "product_recommendations_qggXJq": {
@@ -437,7 +514,7 @@
         "icons_shape": "none",
         "section_width": "page-width",
         "gap": 28,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-5",
         "padding-block-start": 48,
         "padding-block-end": 48
       }
@@ -446,6 +523,9 @@
   "order": [
     "breadcrumbs_gcKbRE",
     "main",
+    "divider_UwmFdH",
+    "technical_features_section_yhWFJe",
+    "divider_HXgCkK",
     "product_recommendations_qggXJq"
   ]
 }
