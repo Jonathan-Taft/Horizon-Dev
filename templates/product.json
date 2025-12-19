@@ -321,7 +321,7 @@
         "section_width": "page-width",
         "thickness": 2,
         "corner_radius": "square",
-        "width_percent": 65,
+        "width_percent": 50,
         "alignment_horizontal": "flex-start",
         "padding-block-start": 16,
         "padding-block-end": 16
