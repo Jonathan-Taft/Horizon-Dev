@@ -1036,11 +1036,12 @@
           "settings": {
             "icon": "star",
             "icon_width": 24,
-            "text": "<p><strong>Made In Europe</strong></p>",
+            "title": "<h2>Made in Europe</h2>",
+            "text": "<p>Using our unique CAD system</p>",
             "border_color": "#e0e0e0",
-            "border_radius": 8,
+            "border_radius": 25,
             "padding": 16,
-            "gap": 12
+            "gap": 10
           },
           "blocks": {}
         },
@@ -1050,9 +1051,10 @@
           "settings": {
             "icon": "star",
             "icon_width": 24,
-            "text": "<p>Which Recommended Brand</p>",
+            "title": "<p><strong>Which Recommended Brand</strong></p>",
+            "text": "<p>Best all round walking shoe</p>",
             "border_color": "#e0e0e0",
-            "border_radius": 8,
+            "border_radius": 25,
             "padding": 16,
             "gap": 12
           },
@@ -1064,9 +1066,10 @@
           "settings": {
             "icon": "star",
             "icon_width": 24,
-            "text": "<p><strong>Ethically Made</strong></p><p></p>",
+            "title": "<p><strong>Ethically Made</strong></p>",
+            "text": "<p>With green credentials</p>",
             "border_color": "#e0e0e0",
-            "border_radius": 8,
+            "border_radius": 25,
             "padding": 16,
             "gap": 12
           },
@@ -1090,10 +1093,10 @@
         "custom_css_class": "",
         "title_alignment": "center",
         "subtitle_alignment": "center",
-        "padding_top": 1,
-        "padding_bottom": 1,
-        "padding_left": 1,
-        "padding_right": 1,
+        "padding_top": 2,
+        "padding_bottom": 2,
+        "padding_left": 2,
+        "padding_right": 2,
         "padding_top_mobile": 1,
         "padding_bottom_mobile": 1,
         "padding_left_mobile": 1,
