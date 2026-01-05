@@ -1,0 +1,395 @@
+{%- doc -%}
+  Renders an icon and text block with a rounded grey border in a flex row layout.
+  
+  @example
+  {% content_for 'block', type: 'icon-text', id: 'icon-text-1' %}
+{%- enddoc -%}
+
+{%- assign block_settings = block.settings -%}
+{%- assign icon_block_class = 'icon-text-block__icon icon-text-block-' | append: block.id %}
+
+<div
+  class="icon-text-block"
+  style="
+    border-color: {{ block_settings.border_color }};
+    border-radius: {{ block_settings.border_radius }}px;
+    padding: {{ block_settings.padding }}px;
+    gap: {{ block_settings.gap }}px;
+  "
+  {{ block.shopify_attributes }}
+>
+  <div class="icon-text-block__icon-wrapper">
+    {% render 'icon-or-image',
+      icon: block_settings.icon,
+      image_upload: block_settings.image_upload,
+      width: block_settings.icon_width,
+      class_name: icon_block_class
+    %}
+  </div>
+  <div class="icon-text-block__text">
+    {% if block_settings.text != blank %}
+      {{ block_settings.text }}
+    {% elsif request.design_mode %}
+      <p>Icon and text content</p>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .icon-text-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid;
+    background-color: transparent;
+  }
+
+  .icon-text-block__icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .icon-text-block__icon {
+    height: auto;
+    fill: currentColor;
+  }
+
+  .icon-text-block__text {
+    flex: 1;
+    margin: 0;
+  }
+
+  .icon-text-block__text p {
+    margin: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Icon and Text",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "Icon",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "apple",
+          "label": "Apple"
+        },
+        {
+          "value": "arrow",
+          "label": "Arrow"
+        },
+        {
+          "value": "banana",
+          "label": "Banana"
+        },
+        {
+          "value": "bottle",
+          "label": "Bottle"
+        },
+        {
+          "value": "box",
+          "label": "Box"
+        },
+        {
+          "value": "carrot",
+          "label": "Carrot"
+        },
+        {
+          "value": "chat_bubble",
+          "label": "Chat Bubble"
+        },
+        {
+          "value": "check_box",
+          "label": "Check Box"
+        },
+        {
+          "value": "clipboard",
+          "label": "Clipboard"
+        },
+        {
+          "value": "dairy",
+          "label": "Dairy"
+        },
+        {
+          "value": "dairy_free",
+          "label": "Dairy Free"
+        },
+        {
+          "value": "dryer",
+          "label": "Dryer"
+        },
+        {
+          "value": "eye",
+          "label": "Eye"
+        },
+        {
+          "value": "fire",
+          "label": "Fire"
+        },
+        {
+          "value": "gluten_free",
+          "label": "Gluten Free"
+        },
+        {
+          "value": "heart",
+          "label": "Heart"
+        },
+        {
+          "value": "iron",
+          "label": "Iron"
+        },
+        {
+          "value": "leaf",
+          "label": "Leaf"
+        },
+        {
+          "value": "leather",
+          "label": "Leather"
+        },
+        {
+          "value": "lightning_bolt",
+          "label": "Lightning Bolt"
+        },
+        {
+          "value": "lipstick",
+          "label": "Lipstick"
+        },
+        {
+          "value": "lock",
+          "label": "Lock"
+        },
+        {
+          "value": "map_pin",
+          "label": "Map Pin"
+        },
+        {
+          "value": "nut_free",
+          "label": "Nut Free"
+        },
+        {
+          "value": "pants",
+          "label": "Pants"
+        },
+        {
+          "value": "paw_print",
+          "label": "Paw Print"
+        },
+        {
+          "value": "pepper",
+          "label": "Pepper"
+        },
+        {
+          "value": "perfume",
+          "label": "Perfume"
+        },
+        {
+          "value": "plane",
+          "label": "Plane"
+        },
+        {
+          "value": "plant",
+          "label": "Plant"
+        },
+        {
+          "value": "price_tag",
+          "label": "Price Tag"
+        },
+        {
+          "value": "question_mark",
+          "label": "Question Mark"
+        },
+        {
+          "value": "recycle",
+          "label": "Recycle"
+        },
+        {
+          "value": "return",
+          "label": "Return"
+        },
+        {
+          "value": "ruler",
+          "label": "Ruler"
+        },
+        {
+          "value": "serving_dish",
+          "label": "Serving Dish"
+        },
+        {
+          "value": "shirt",
+          "label": "Shirt"
+        },
+        {
+          "value": "shoe",
+          "label": "Shoe"
+        },
+        {
+          "value": "silhouette",
+          "label": "Silhouette"
+        },
+        {
+          "value": "bluesky",
+          "label": "Social Bluesky"
+        },
+        {
+          "value": "facebook",
+          "label": "Social Facebook"
+        },
+        {
+          "value": "instagram",
+          "label": "Social Instagram"
+        },
+        {
+          "value": "linkedin",
+          "label": "Social Linkedin"
+        },
+        {
+          "value": "pinterest",
+          "label": "Social Pinterest"
+        },
+        {
+          "value": "snapchat",
+          "label": "Social Snapchat"
+        },
+        {
+          "value": "spotify",
+          "label": "Social Spotify"
+        },
+        {
+          "value": "threads",
+          "label": "Social Threads"
+        },
+        {
+          "value": "tiktok",
+          "label": "Social Tiktok"
+        },
+        {
+          "value": "tumblr",
+          "label": "Social Tumblr"
+        },
+        {
+          "value": "twitter",
+          "label": "Social Twitter"
+        },
+        {
+          "value": "vimeo",
+          "label": "Social Vimeo"
+        },
+        {
+          "value": "youtube",
+          "label": "Social Youtube"
+        },
+        {
+          "value": "whatsapp",
+          "label": "Social Whatsapp"
+        },
+        {
+          "value": "snowflake",
+          "label": "Snowflake"
+        },
+        {
+          "value": "star",
+          "label": "Star"
+        },
+        {
+          "value": "stopwatch",
+          "label": "Stopwatch"
+        },
+        {
+          "value": "truck",
+          "label": "Truck"
+        },
+        {
+          "value": "washing",
+          "label": "Washing"
+        }
+      ],
+      "default": "star"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_upload",
+      "label": "Image Icon (optional)"
+    },
+    {
+      "type": "range",
+      "id": "icon_width",
+      "label": "Icon Width",
+      "min": 12,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Add your text here</p>"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between icon and text",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon and Text"
+    }
+  ]
+}
+{% endschema %}
+
